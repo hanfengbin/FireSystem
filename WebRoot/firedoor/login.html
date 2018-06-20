@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<title>用户登陆</title>
+
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+
+<link href="css/font-awesome.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+	<div class="navbar navbar-fixed-top">
+
+		<div class="navbar-inner">
+
+			<div class="container">
+				
+				<a class="brand" href="index.html">消防防火门监控</a>
+				<div id="headDivTime">
+					<span id="nowDate"></span></br><span id="nowWeek"></span>  <span id="nowTime" style="font-size:1.1em;"></span>
+				</div>
+			</div>
+			<!-- /container -->
+
+		</div>
+		<!-- /navbar-inner -->
+
+	</div>
+	<!-- /navbar -->
+
+
+
+	<div class="main" style="height:610px">
+		<div class="main-inner">
+			<div class="container">
+				<div class="row" style="text-align:center;">
+
+					<div style="width:20em;margin:auto auto 21.35em auto;">
+					<br><br><br><br><br>
+						<h1>用户登陆</h1>
+
+						<div class="login-fields">
+
+							<p>请输入您的信息</p>
+
+							<div class="field">
+								<label style="float:left;padding-left:1.5em;" for="username">用户名:</label>
+								<input id="username" name="username" value=""
+									placeholder="手机号/用户号" class="login username-field" type="text">
+							</div>
+							<!-- /field -->
+
+							<div class="field">
+								<label style="float:left;padding-left:1.5em;" for="password">密码:</label>
+								<input id="password" name="password" value=""
+									placeholder="Password" class="login password-field"
+									type="password">
+							</div>
+							<!-- /password -->
+
+						</div>
+						<!-- /login-fields -->
+
+						<div class="login-actions">
+
+							<button id="loginButton" class="button btn btn-success btn-large">登陆</button>
+
+						</div>
+						<!-- .actions -->
+
+
+
+					</div>
+					
+					
+					<div id="appImage"><br><br><br><br><br><br>
+					<span>扫描二维码下载APP</span>
+					</div>
+					<!-- <div id="appText">扫描二维码下载APP</div> -->
+				
+					
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /main-inner -->
+	</div>
+	<!-- /main -->
+	<div class="footer">
+		<div class="footer-inner">
+			<div class="container">
+				<div class="row">
+					<div class="span12" style="text-align:center;">Copyright © By
+						College of Automation of CQU, 2016</div>
+					<!-- /span12 -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /footer-inner -->
+	</div>
+
+
+	<script src="js/jquery-1.7.2.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script>
+	function setCookie(name,value)
+	{
+	    var Days = 30;
+	    var exp = new Date();
+	    exp.setTime(exp.getTime() + Days*24*60*60*1000);
+	    document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+	}
+	function startTime()
+	{
+		var today=new Date();
+		var h=today.getHours();
+		var m=today.getMinutes();
+		var s=today.getSeconds();
+		var w=today.getDay();
+		var y=today.getFullYear();
+		var mt=today.getMonth()+1;
+		var d=today.getDate();
+		//var mms=today.getMilliseconds();
+		var weekChn = ["日","一","二","三","四","五","六"];
+		
+		// add a zero in front of numbers<10
+		h=checkTime(h);
+		m=checkTime(m);
+		s=checkTime(s);
+
+		$("#nowTime").text(h+":"+m+":"+s);
+		$("#nowDate").text(y+"年"+mt+"月"+d+"日");
+		$("#nowWeek").text("星期"+weekChn[w]);
+		t=setTimeout('startTime()',1000);
+	}
+	function checkTime(i)
+	{
+		if (i<10) {i="0" + i}
+  		return i
+	}
+	startTime();
+	$('#loginButton').click(function(){
+		var $username=$('#username').val();
+		var $password=$('#password').val();
+		if($username==''||$password==''){
+			$('.login-fields p').html('用户名或密码不能为空');
+			$('#username').val($username);
+			$('#password').val("");
+		}else{
+			$.ajax({
+	            type: "post",
+	            url: "../servlet/DispatchServlet",
+	            data:{'controller':'Login','id':$username,'password':$password},
+	            success: function (simuData) {
+	            	//alert(simuData);
+	            	if((simuData=="success")){
+	            		window.location.href="index.jsp";
+	            	}else if((simuData=="weibao")){
+	            		window.location.href="jiedan.jsp";
+	            	}
+	            	else{
+	        			$('.login-fields p').html('用户名或密码错误,请重新输入');
+	        			$('#username').val($username);
+	        			$('#password').val("");
+	            	}
+	            },
+	        });	
+		}
+		
+	});
+</script>
+</body>
+
+</html>

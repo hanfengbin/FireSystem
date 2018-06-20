@@ -1,0 +1,19 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="FireSystem:Web exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/FireSystem_Web_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="FireSystem/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="FireSystem" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$PROJECT_DIR$/WebRoot/WEB-INF/lib/json-lib-0.9.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/WebRoot/WEB-INF/lib/json-lib-0.9_2.jar" />
+          <element id="library" level="project" name="jdk1" />
+          <element id="file-copy" path="$PROJECT_DIR$/WebRoot/WEB-INF/lib/json-lib-0.9_3.jar" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,55 @@
+.login{
+	width: 245px;
+	height: 500px;
+	margin: 0 auto;
+	margin-top: 80px;
+	/*padding: 10px;*/
+	/*background-color: red;*/
+	text-align: center;
+}
+
+.title{
+
+	font-size: 22px;
+	color: black;
+	display: block;
+
+}
+
+.peoplelogin{
+
+	margin-left: -100px;
+	/*margin-top: 222px;*/
+	font-size: 13px;
+
+}
+
+.loginkuang{
+	margin-top: 5px;
+	width: 100%;
+	height: 160px;
+	padding: 10px;
+	background-color: rgba(0, 0, 0, 0.23);
+	border-radius: 8px;
+	opacity: 0.8;
+}
+
+.mm{
+	margin-top: 5px;
+}
+
+.btndeng{
+	width: 100%;
+	height: 20px;
+	margin-top: 25px;
+	/*margin: 0 auto;*/
+}
+
+.btnlogin{
+	padding-left: 25px; 
+	padding-right: 25px;
+}
+
+a:hover{
+	text-decoration: none;
+}
